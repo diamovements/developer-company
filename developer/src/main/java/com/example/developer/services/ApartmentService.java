@@ -2,6 +2,7 @@ package com.example.developer.services;
 
 import com.example.developer.models.Apartment;
 import com.example.developer.repositories.ApartmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,13 @@ import java.util.List;
 
 @Service
 public class ApartmentService {
-    private ApartmentRepository apartmentRepository;
+
+    @Autowired
+    public ApartmentService(ApartmentRepository apartmentRepository) {
+        this.apartmentRepository = apartmentRepository;
+    }
+
+    private final ApartmentRepository apartmentRepository;
 
     public List<Apartment> findAll(boolean sortedByArea) {
         if (sortedByArea) {

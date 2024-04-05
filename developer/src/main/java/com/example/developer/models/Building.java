@@ -31,4 +31,8 @@ public class Building {
     @Column(name = "title")
     private String title;
 
+    @NotEmpty
+    @Column(name = "distance")
+    private int distance;
+
 }

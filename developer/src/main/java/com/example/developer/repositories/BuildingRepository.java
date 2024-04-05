@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface BuildingRepository extends JpaRepository<Building, Integer> {
     List<Building> findByTitleStartsWith(String prefix);
+    List<Building> findBuildingsByDistanceBetween(int min, int max);
 }

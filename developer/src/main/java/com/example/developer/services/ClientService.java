@@ -15,10 +15,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService implements UserDetailsService {
 
+    @Autowired
+    public ClientService(EntityManager em, ClientRepository clientRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.em = em;
+        this.clientRepository = clientRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
     @PersistenceContext
     private EntityManager em;
-    private ClientRepository clientRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ClientRepository clientRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -29,5 +36,13 @@ public class ClientService implements UserDetailsService {
         return User.builder().username(client.getUsername())
                 .password(client.getPassword()).roles("USER").build();
     }
-
+    public boolean save(Client client) {
+        Client clientFromDB = clientRepository.findClientByUsername(client.getUsername());
+        if (clientFromDB != null) {
+            return false;
+        }
+        client.setPassword(bCryptPasswordEncoder.encode(client.getPassword()));
+        clientRepository.save(client);
+        return true;
+    }
 }

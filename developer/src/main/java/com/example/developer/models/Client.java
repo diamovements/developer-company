@@ -36,7 +36,7 @@ public class Client {
     private String email;
 
     @NotEmpty
-    @Column(name = "email")
+    @Column(name = "phone")
     @Size(max = 11)
     private int phone;
 
