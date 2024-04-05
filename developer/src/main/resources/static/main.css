@@ -1,0 +1,103 @@
+.header {
+  z-index: 1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90vh;
+  background-image: url('images/main.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.header__title {
+  font-size: calc(40px + 3vw);
+  font-weight: 900;
+  text-align: center;
+  color: var(--second-color);
+  text-shadow: 0 0 40px var(--main-color);
+}
+
+.header__desc {
+  font-size: calc(20px + 0.6vw);
+  font-weight: 500;
+  text-align: center;
+  color: var(--second-color);
+  text-shadow: 0 0 40px var(--main-color);
+}
+
+.header__features {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5vw;
+}
+
+.feature {
+  margin: 3vw;
+  font-size: calc(14px + 0.5vw);
+  font-weight: 500;
+  color: var(--second-color);
+  text-shadow: 0 0 40px var(--main-color);
+  white-space: pre-line;
+}
+
+.feature_bold {
+  font-weight: 900;
+}
+
+@media (max-width: 475px) {
+  .header__features {
+    flex-flow: column;
+  }
+  .feature {
+    text-align: center;
+  }
+}
+
+.apartment-complex {
+  background-color: var(--main-color);
+}
+
+.apartment-complex__title {
+  font-size: calc(20px + 0.5vw);
+  color: var(--fourth-color);
+}
+
+.complexes {
+  width: 90%;
+  margin: 1vw auto;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  gap: 5vw;
+}
+
+.complex {
+  display: flex;
+  flex-flow: column;
+  gap: 0.5vw;
+}
+
+.complex__image {
+  width: calc(200px + 15vw);
+  height: calc(200px + 15vw);
+  overflow: hidden;
+}
+
+.complex__image img {
+  width: 100%;
+  height: auto;
+}
+
+.complex__name {
+  font-size: calc(20px + 0.3vw);
+  font-weight: 900;
+  color: var(--fourth-color);
+}
+
+.complex__metro {
+  font-size: calc(14px + 0.3vw);
+  font-weight: 500;
+  color: var(--fourth-color);
+}
