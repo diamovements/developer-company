@@ -2,6 +2,7 @@ package com.example.developer.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -19,12 +20,13 @@ public class Apartment {
     private int apartment_id;
 
     @NotEmpty
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 50)
     @Column(name = "floor")
     private int floor;
 
     @NotEmpty
     @Size(min = 15)
+    @Column(name = "area")
     private float area;
 
     @NotEmpty
@@ -32,6 +34,16 @@ public class Apartment {
     @Column(name = "price")
     private float price;
 
+    @NotEmpty
+    @Max(500)
+    @Column(name = "number")
+    private int number;
+
+    @NotEmpty
+    @Max(7)
+    @Column(name = "rooms")
+    private int rooms;
+
     @ManyToOne
-    private Building building_title;
+    private Building buildingTitle;
 }

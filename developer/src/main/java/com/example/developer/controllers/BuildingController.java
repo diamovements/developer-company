@@ -1,5 +1,6 @@
 package com.example.developer.controllers;
 
+import com.example.developer.models.Apartment;
 import com.example.developer.models.Building;
 import com.example.developer.models.DistanceRange;
 import com.example.developer.services.ApartmentService;
@@ -16,16 +17,13 @@ import java.util.List;
 public class BuildingController {
 
     private final BuildingService buildingService;
-    private final ApartmentService apartmentService;
 
     @Autowired
-    public BuildingController(BuildingService buildingService, ApartmentService apartmentService) {
+    public BuildingController(BuildingService buildingService) {
         this.buildingService = buildingService;
-        this.apartmentService = apartmentService;
     }
 
     // список всех ЖК
-
     @GetMapping
     public List<Building> findAll() {
         return buildingService.findAll(true);
@@ -37,10 +35,14 @@ public class BuildingController {
     }
 
     //список всех жк с дистанцией между двумя числами
-    @GetMapping("/distance")
+    @PostMapping("/distance")
     public List<Building> findBetween(@RequestBody DistanceRange distanceRange) {
         int min = distanceRange.getMin();
         int max = distanceRange.getMax();
         return buildingService.findBetweenDistance(min, max);
+    }
+    @GetMapping("{title}/apartments")
+    public List<Apartment> getAparts(@PathVariable("title") String title) throws Exception {
+        return buildingService.getApartmentsByBuildingTitle(title);
     }
 }

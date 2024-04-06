@@ -1,5 +1,6 @@
 package com.example.developer.services;
 
+import com.example.developer.models.Apartment;
 import com.example.developer.models.Building;
 import com.example.developer.repositories.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,14 @@ public class BuildingService {
 
     public List<Building> findBetweenDistance(int min, int max) {
         return buildingRepository.findBuildingsByDistanceBetween(min, max);
+    }
+    public List<Apartment> getApartmentsByBuildingTitle(String title) throws Exception {
+        Building building = buildingRepository.findBuildingByTitle(title);
+        if (building != null) {
+            return building.getApartments();
+        }
+        else {
+            throw new Exception("Нет жилого комплекса с таким названием");
+        }
     }
 }
