@@ -37,7 +37,7 @@ public class BuildingController {
     }
 
     //список всех жк с дистанцией между двумя числами
-    @PostMapping("/distance")
+    @GetMapping("/distance")
     public List<Building> findBetween(@RequestBody DistanceRange distanceRange) {
         int min = distanceRange.getMin();
         int max = distanceRange.getMax();
