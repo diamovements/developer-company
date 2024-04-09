@@ -24,12 +24,12 @@ public class BuildingController {
     }
 
     // список всех ЖК
-    @GetMapping
+    @GetMapping("")
     public List<Building> findAll() {
         return buildingService.findAll(true);
     }
     // поиск по параметру в http-запросе по названию, начинающегося с prefix
-    @GetMapping("")
+    @GetMapping("/search")
     public List<Building> findTitleStartsWith(@RequestParam String prefix) {
         return buildingService.findByTitleStartsWith(prefix);
     }

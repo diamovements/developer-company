@@ -5,13 +5,20 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Client {
 
     @Id
@@ -19,29 +26,23 @@ public class Client {
     private int person_id;
 
     @NotEmpty
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
 
     @NotEmpty
-    @Column(name = "name")
+    @Column(nullable = false)
     private String name;
 
     @NotEmpty
-    @Column(name = "surname")
-    private String surname;
-
-    @NotEmpty
     @Email
-    @Column(name = "email")
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @NotEmpty
-    @Column(name = "phone")
-    @Size(max = 11)
-    private int phone;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "clients_roles",
+            joinColumns = {@JoinColumn(name="client_id", referencedColumnName =
+                    "person_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private List<Role> roles = new ArrayList<>();
 
-    @Column(name = "username")
-    @Size(max = 25)
-    @NotEmpty
-    private String username;
 }

@@ -1,10 +1,10 @@
 package com.example.developer.repositories;
 
-import com.example.developer.models.Client;
+import com.example.developer.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Integer> {
-    Client findClientByEmail(String email);
+public interface RoleRepository extends JpaRepository<Role, Long> {
+    Role findRoleByName(String name);
 }

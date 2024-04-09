@@ -15,7 +15,13 @@
     <a class="menu__href" href="">Жилые комплексы</a>
     <a class="menu__href" href="">Обратная связь</a>
     <a class="menu__href" href=""><i class="fa-solid fa-heart"></i></a>
-    <a class="menu__href" href=""><i class="fa-solid fa-user"></i></a>
+    <a id="icon" class="menu__href" href="#"><i class="fa-solid fa-user"></i></a>
+    <script>
+      const iconLink = document.getElementById('icon');
+      iconLink.addEventListener('click', function() {
+        window.location.href = '/login';
+      });
+    </script>
   </nav>
   <main>
     <div class="header">
