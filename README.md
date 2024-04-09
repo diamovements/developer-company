@@ -4,3 +4,6 @@
 - CSS, HTML, JS
 - Javadoc
 - Docker
+- Maven
+- PostgreSQL
+- Tomcat server
