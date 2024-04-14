@@ -3,14 +3,20 @@ package com.example.developer.services;
 import com.example.developer.models.Apartment;
 import com.example.developer.models.Building;
 import com.example.developer.repositories.BuildingRepository;
+import com.example.developer.repositories.ClientRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 @Service
 public class BuildingService {
+
 
     @Autowired
     public BuildingService(BuildingRepository buildingRepository) {
@@ -19,12 +25,14 @@ public class BuildingService {
 
     private final BuildingRepository buildingRepository;
 
+    @SneakyThrows
+    @Transactional
     public List<Building> findAll(boolean sortedByTitle) {
         if (sortedByTitle) {
             return buildingRepository.findAll(Sort.by("title"));
         }
         else {
-            return buildingRepository.findAll();
+            return buildingRepository.findAll(Sort.unsorted());
         }
     }
 
@@ -42,7 +50,8 @@ public class BuildingService {
     public List<Apartment> getApartmentsByBuildingTitle(String title) throws Exception {
         Building building = buildingRepository.findBuildingByTitle(title);
         if (building != null) {
-            return building.getApartments();
+//            return building.getApartments();
+            return null;
         }
         else {
             throw new Exception("Нет жилого комплекса с таким названием");

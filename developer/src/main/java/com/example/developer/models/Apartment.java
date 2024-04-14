@@ -45,5 +45,6 @@ public class Apartment {
     private int rooms;
 
     @ManyToOne
-    private Building buildingTitle;
+    @JoinColumn(name = "building_id")
+    private Building building;
 }

@@ -17,8 +17,8 @@ public class Building {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int building_id;
 
-    @OneToMany(mappedBy = "buildingTitle", cascade = CascadeType.ALL)
-    private List<Apartment> apartments;
+//    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
+//    private List<Apartment> apartments;
 
     @NotEmpty
     @Column(name = "location")

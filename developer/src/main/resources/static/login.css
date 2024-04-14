@@ -1,8 +1,12 @@
 /* login.css */
 
 /* Стили для navbar */
+body {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+}
 .navbar {
-    background-color: #343a40;
+    background-color: darkgrey;
 }
 
 .navbar-brand {
@@ -41,13 +45,13 @@
 }
 
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: lightgray;
+    border-color: #343a40;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: darkgrey;
+    border-color: #343a40;
 }
 
 .alert {
