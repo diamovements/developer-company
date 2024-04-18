@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
+
 @RestController
 public class ApartmentRequestController {
     private final EmailService emailService;
@@ -19,10 +21,11 @@ public class ApartmentRequestController {
     }
     @PostMapping("/apartment-request")
     public ResponseEntity<String> request(@RequestBody ApartmentRequestDTO dto) {
-        String subject = "Ваша заявка на покупку квартиры в ЖК " + dto.getTitle() + " принята!";
-        String message = dto.getFirstName() + ", спешим обрадовать!\nМы забронировали за Вами право на покупку квартиры в ЖК " + dto.getTitle() +
-                "!\nМы свяжемся с Вами в течение суток.";
-        emailService.sendEmail(dto.getEmail(), subject, message);
+        String subject = "Квартира в ЖК " + dto.getTitle() + " ждет Вас!";
+        String message = "<h2>" + dto.getFirstName() + ", спешим обрадовать!</h2>"
+                + "<p>Мы забронировали за Вами право на покупку квартиры в ЖК " + dto.getTitle() + "!</p>"
+                + "<p>Мы свяжемся с Вами в течение суток.</p>";
+        emailService.sendEmail(dto.getEmail(), subject, message, "C:/Users/karin/Downloads/developer/developer/src/main/resources/static/images/email.jpg");
         return new ResponseEntity<>("Заявка на покупку квартиры принята", HttpStatus.OK);
     }
 }
