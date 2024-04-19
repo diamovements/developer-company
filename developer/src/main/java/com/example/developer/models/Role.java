@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "roles", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
