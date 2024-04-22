@@ -1,3 +1,89 @@
+.scene {
+	height: 650vh;
+  position: relative;
+}
+.layer {
+  z-index: -1;
+	height: 100vh;
+	width: 100vw;
+	background-position: center;
+	background-size: cover;
+	position: fixed; 
+  top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation-timeline: scroll();
+	animation-timing-function: linear;
+	animation-fill-mode: both;
+	animation-range: 0 300vh;
+}
+
+.layer:nth-child(1) { animation-name: animation-1; }
+@keyframes animation-1 { to { scale: 1.15; } }
+
+.layer:nth-child(2) { animation-name: animation-2; }
+@keyframes animation-2 { to { scale: 1.275; } }
+
+.layer:nth-child(3) { animation-name: animation-3; }
+@keyframes animation-3 { to { scale: 1.4; } }
+
+.layer:nth-child(4) { animation-name: animation-4; }
+@keyframes animation-4 { to { scale: 1.75;} }
+
+.layer:nth-child(5) {
+	opacity: 0;
+	animation-range: 200vh 700vh;
+	animation-name: animation-end;
+}
+@keyframes animation-end { 30% { opacity: 1; } 50% {transform: scale(1.5)} 70% {opacity: 1; transform: translateY(0) scale(1.5);} to { opacity: 1; transform: translateY(-100%) scale(1.5)}}
+
+.layer__content {
+	padding: 20vh calc(20px + 2vw);
+  background-color: var(--third-color);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 10px var(--third-color);
+	animation-timeline: scroll();
+	animation-timing-function: linear;
+	animation-fill-mode: both;
+	animation-range: 0 45vh;
+	animation-name: animation-head;
+}
+@keyframes animation-head { to { opacity: 0; filter: blur(20px); } }
+
+.layer__content h1 {
+  width: min-content;
+	font-size: calc(30px + 2vw);
+  color: var(--second-color);
+	text-align: center;
+	letter-spacing: var(--letter-spacing);
+  line-height: var(--line-height);
+}
+.layer__end h3 {
+  text-transform: uppercase;
+	font-size: calc(30px + 1vw);
+  text-align: center;
+	letter-spacing: var(--letter-spacing);
+  line-height: var(--line-height);
+	position: relative;
+}
+.layer__end {
+  width: min-content;
+}
+.layer__end::before {
+	content: '';
+	background-color: var(--second-color);
+	inset: 0;
+	position: absolute;
+	opacity: 0;
+	animation-timeline: scroll();
+	animation-timing-function: linear;
+	animation-fill-mode: both;
+	animation-range: 350vh 500vh;
+	animation-name: animation-bg;
+}
+@keyframes animation-bg { to { opacity: 1; }}
+
 .header {
   z-index: 1;
   display: flex;
@@ -13,7 +99,7 @@
 
 .header__title {
   font-size: calc(40px + 3vw);
-  font-weight: 900;
+  font-weight: 700;
   text-align: center;
   color: var(--second-color);
   text-shadow: 0 0 40px var(--main-color);
