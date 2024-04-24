@@ -11,30 +11,37 @@
   <script src="https://kit.fontawesome.com/be9639af8e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <button class="menu-button">
-    МЕНЮ
-    <div class="menu-button__close"></div>
-  </button>
-
-  <nav class="menu">
     
-  </nav>
-
-  <!-- <nav class="menu">
-    <a class="menu__href menu__title">MOSCOW BUILD</a>
-    <a class="menu__href" href="">Жилые комплексы</a>
-    <a class="menu__href" href="">Жилые комплексы</a>
-    <a class="menu__href" href="">Обратная связь</a>
-    <a class="menu__href" href=""><i class="fa-solid fa-heart"></i></a>
-    <a id="icon" class="menu__href" href="#"><i class="fa-solid fa-user"></i></a>
-    <script>
+    <!-- <script>
       const iconLink = document.getElementById('icon');
       iconLink.addEventListener('click', function() {
         window.location.href = '/login';
       });
-    </script>
-  </nav> -->
+    </script> -->
+    <nav class="menu">
+      <button class="menu__button button_menu">
+        МЕНЮ
+        <div class="button_menu__close"></div>
+      </button>
+      <ul class="menu__list">
+        <li>
+          <a class="menu__href" href="#complexes">Жилые комплексы</a>
+        </li>
+        <li>
+          <a class="menu__href" href="">Планировки</a>
+        </li>
+        <li>
+          <a class="menu__href" href="">Отделки</a>
+        </li>
+        <li>
+          <a id="icon" class="menu__href" href="#"><i class="fa-regular fa-user"></i></a>
+        </li>
+      </ul>
+    </nav>
+  
+
   <main>
+
     <header>
       <div class="scene">
         <div class="layer" style="background-image: url(images/background.jpg)"></div>
@@ -52,48 +59,68 @@
         </div>
       </div>
     </header>
+
+    <div class="company-info">
+      <img src="images/company-info.jpg" alt="Один из домов в ЖК" class="company-info__image">
+
+      <div class="company-info__description">
+        <p>
+        Откройте дверь в мир комфорта и современности с MOSCOW BUILD!
+        Наши жилые комплексы в пределах МКАД - это не просто дома, а истинные оазисы современного комфорта и эстетики. 
+        Откройте для себя уникальные пространства, где каждая линия, каждая отделка отражает внимание к деталям и стремление к идеалу. 
+        </p>
+
+        <div class="company-info__features">
+          <p class="feature"><span class="feature_bold">От 300 т.р.</span>
+            за квадратный метр</p>
+          <p class="feature"><span class="feature_bold">Более 30-ти</span>
+            вариантов планировок</p>
+          <p class="feature"><span class="feature_bold">от 22 кв.м.</span>
+            площадь квартир</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="apartment-complex" id="complexes">
+      <h1 class="apartment-complex__title">НАШИ ЖИЛЫЕ КОМПЛЕКСЫ</h1>
+      <div class="complexes">
+        <div class="complex">
+          <span class="complex__name">ЖК КУТОЗОВСКИЙ</span>
+          <span class="complex__metro">5 минут до м. Белорусская</span>
+          <div class="complex__image">
+              <img src="images/kutuzov.jpg"/>
+          </div>
+        </div>
+        <div class="complex">
+          <span class="complex__name">ЖК КУТОЗОВСКИЙ</span>
+          <span class="complex__metro">5 минут до м. Белорусская</span>
+          <div class="complex__image">
+              <img src="images/samolyot.jpeg"/>
+          </div>
+        </div>
+        <div class="complex">
+          <span class="complex__name">ЖК КУТОЗОВСКИЙ</span>
+          <span class="complex__metro">5 минут до м. Белорусская</span>
+          <div class="complex__image">
+              <img src="images/city.jpg"/>
+          </div>
+        </div>
+        <div class="complex">
+          <span class="complex__name">ЖК КУТОЗОВСКИЙ</span>
+          <span class="complex__metro">5 минут до м. Белорусская</span>
+          <div class="complex__image">
+              <img src="images/kutuzov.jpg"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="header">
       <span class="header__title">MOSCOW BUILD</span>
       <span class="header__desc">Современные жилые комплексы в пределах МКАД</span>
-      <div class="header__features">
-        <p class="feature"><span class="feature_bold">От 300 т.р.</span>
-          за квадратный метр</p>
-        <p class="feature"><span class="feature_bold">Более 30-ти</span>
-          вариантов планировок</p>
-        <p class="feature"><span class="feature_bold">от 22 кв.м.</span>
-          площадь квартир</p>
-      </div>
-    </div>
-    <div class="apartment-complex">
-      <h1 class="apartment-complex__title">Жилые комплексы</h1>
-      <div class="complexes">
-
-      </div>
+      
     </div>
   </main>
-  <!-- <script>
-    window.addEventListener('scroll', function() {
-      const scrollHeight = window.scrollY;
-      const animationEndHeight = document.documentElement.clientHeight * 5; // 300vh
-
-      if (scrollHeight >= animationEndHeight) {
-        // После завершения анимации изменяем позиционирование и высоту
-        document.querySelector('.scene').style.height = '100vh'; // Или установите конкретное значение, если нужно
-
-        document.querySelectorAll('.layer').forEach(layer => {
-          layer.style.position = 'absolute'; // Изменяем на absolute
-        });
-      } else {
-        // Возвращаем исходные значения, когда пользователь прокручивает страницу вверх
-        document.querySelector('.scene').style.height = '500vh'; // Возвращаем исходную высоту scene
-
-        document.querySelectorAll('.layer').forEach(layer => {
-          layer.style.position = 'fixed'; // Возвращаем позиционирование на fixed
-          // Возобновляем анимацию, если это нужно
-        });
-      }
-    });
-
-  </script> -->
 </body>
 </html>
