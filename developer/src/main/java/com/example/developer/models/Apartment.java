@@ -1,6 +1,7 @@
 package com.example.developer.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -46,5 +47,6 @@ public class Apartment {
 
     @ManyToOne
     @JoinColumn(name = "building_id")
+    @JsonIgnore
     private Building building;
 }

@@ -5,8 +5,11 @@ import com.example.developer.models.Building;
 import com.example.developer.models.DistanceRange;
 import com.example.developer.services.ApartmentService;
 import com.example.developer.services.BuildingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.stylesheets.LinkStyle;
 
@@ -45,4 +48,7 @@ public class BuildingController {
     public List<Apartment> getAparts(@PathVariable("title") String title) throws Exception {
         return buildingService.getApartmentsByBuildingTitle(title);
     }
+
+    //-------------------------------------------------
+
 }

@@ -22,6 +22,10 @@ public class ApartmentController {
     public List<Apartment> getAllByTitle(@PathVariable("title") String title) {
         return apartmentService.findAll(true, title);
     }
+    @GetMapping("/all-apartments")
+    public List<Apartment> getAll() {
+        return apartmentService.findAllApartments(true);
+    }
 
 //    @PostMapping("/{title}/apartments/floor")
 //    public List<Apartment> getByFloor(@PathVariable("title") String title, @RequestBody DistanceRange distanceRange) {

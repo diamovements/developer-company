@@ -52,6 +52,9 @@ public class ApartmentService {
             return apartmentRepository.findApartmentsByFloorBetween(min, max, Sort.unsorted(), title);
         }
     }
+    public List<Apartment> findAllApartments(boolean sorted) {
+        return apartmentRepository.findAll(Sort.by("area"));
+    }
     public List<Apartment> findByFilter(ApartmentFilter apartmentFilter, String title) {
         Specification<Apartment> spec = Specification.where(null);
         if (apartmentFilter.getMinFloor() != null && apartmentFilter.getMaxFloor() != null) {

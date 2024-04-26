@@ -1,68 +1,82 @@
-#version: '3.8'
+#
+#version: "3.8"
 #
 #services:
-#  app:
-#    restart: always
+#
+#  dev:
+#    container_name: dev_app
 #    build:
 #      context: .
-#      dockerfile: Dockerfile.app.dockerfile
+#      dockerfile: Dockerfile
 #    ports:
-#      - "8080:8080"
+#      - '8081:8080'
 #    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
-#      SPRING_DATASOURCE_USERNAME: postgres
-#      SPRING_DATASOURCE_PASSWORD: 111
-#      SPRING_MAIL_HOST: smtp.gmail.com
-#      SPRING_MAIL_PORT: 587
-#      SPRING_MAIL_USERNAME: karinaabdu6@gmail.com
-#      SPRING_MAIL_PASSWORD: pwkotchqzliqgsco
-#      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
-#      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://my-db:5432/postgres
+#      - SPRING_DATASOURCE_USERNAME=postgres
+#      - SPRING_DATASOURCE_PASSWORD=111
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 #    depends_on:
-#      - db
-#  db:
+#      - my-db
+#  my-db:
 #    image: postgres:alpine
-#    ports:
-#      - "5555:5432"
+#    container_name: my-db
+#    restart: always
 #    environment:
-#        POSTGRES_DB: postgres
-#        POSTGRES_USER: postgres
-#        POSTGRES_PASSWORD: 111
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=111
+#      - POSTGRES_DB=postgres
+#    ports:
+#      - '5432:5432'
 #    volumes:
-#      - ./course.sql:/docker-entrypoint-initdb.d/course.sql
-#      #- postgres_data:/var/lib/postgresql/data
+#      - ./tables.sql:/docker-entrypoint-initdb.d/tables.sql
+#      - my-data:/var/lib/postgresql/data
 #
 #volumes:
-#  postgres_data:
-#
-#
-version: "3.8"
+#  my-data:
 
+version: '3.8'
 services:
-
-  dev:
-    container_name: dev_app
+  client-backend:
+    image: client:0.0.1
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '8081:8080'
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://my-db:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=111
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - "8080:8080"
     depends_on:
-      - my-db
-  my-db:
-    image: postgres:alpine
-    container_name: my-db
+      - service-db
+    environment:
+      - SERVER_PORT= 8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/developer
+      - MAIL_HOST=smtp.gmail.com
+      - MAIL_PORT=587
+      - MAIL_USERNAME=karinaabdu6@gmail.com
+      - MAIL_PASSWORD=pwkotchqzliqgsco
+
+  service-db:
+    image: postgres:14.7-alpine
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4:7
     restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=111
-      - POSTGRES_DB=postgres
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - '5432:5432'
+      - "5050:80"
     volumes:
-      - ./tables.sql:/docker-entrypoint-initdb.d/tables.sql
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  db-data:
+  pgadmin-data:
