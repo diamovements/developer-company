@@ -84,59 +84,50 @@
 }
 @keyframes animation-bg { to { opacity: 1; }}
 
-.header {
-  z-index: 1;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 90vh;
-  background-image: url('images/main.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.header__title {
-  font-size: calc(40px + 3vw);
-  font-weight: 700;
-  text-align: center;
-  color: var(--second-color);
-  text-shadow: 0 0 40px var(--main-color);
-}
-
-.header__desc {
-  font-size: calc(20px + 0.6vw);
-  font-weight: 500;
-  text-align: center;
-  color: var(--second-color);
-  text-shadow: 0 0 40px var(--main-color);
-}
-
 .company-info {
-  padding: calc(20px + 1vw);
+  padding: calc(20px + 2vw);
   display: flex;
   flex-flow: row;
   align-items: center;
-  gap: calc(20px + 1vw);
+  gap: calc(20px + 2vw);
   background-image: url(images/gray-background.jpg);
 }
 
 .company-info__image {
   width: 30%;
+  filter: grayscale(50%);
+  transition: all .5s;
+}
+
+.company-info__image:hover {
+  transform: scale(1.02);
+  filter: grayscale(0%);
 }
 
 .company-info__description {
-  width: 70%;
-  font-size: calc(20px + 0.5vw);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: calc(20px + 1vw);
+  font-size: calc(16px + 0.5vw);
   font-weight: 300;
   text-align: center;
   text-transform: uppercase;
   color: var(--second-color);
 }
 
+.accent {
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.line {
+  width: 70%;
+  height: 1px;
+  background-color: var(--second-color);
+}
+
 .company-info__features {
-  margin: 5vw;
   display: flex;
   flex-flow: wrap;
   justify-content: space-around;
@@ -145,7 +136,7 @@
 
 .feature {
   min-width: max-content;
-  font-size: calc(20px + 0.5vw);
+  font-size: calc(16px + 0.5vw);
   font-weight: 300;
   color: var(--second-color);
   text-shadow: 0 0 40px var(--main-color);
@@ -160,9 +151,6 @@
   .company-info__image {
     width: 50%;
   }
-  .company-info__description {
-    width: 50%;
-  }
 }
 
 @media (max-width: 700px) {
@@ -170,9 +158,6 @@
     flex-flow: column;
   }
   .company-info__image {
-    width: 100%;
-  }
-  .company-info__description {
     width: 100%;
   }
 }
@@ -197,7 +182,7 @@
 @keyframes complex-title-bg { from { transform: translateX(-50%); } to { transform: translateX(0); }}
 
 .complexes {
-  padding: 3vw;
+  padding: calc(10px + 2vw);
   width: 100%;
   display: flex;
   flex-flow: wrap;
@@ -209,12 +194,22 @@
   display: flex;
   flex-flow: column;
   gap: 0.5vw;
+  transition: all 0.5s;
 }
 
 .complex__image {
+  filter: grayscale(50%);
   width: calc(200px + 15vw);
   height: calc(200px + 15vw);
   overflow: hidden;
+}
+
+.complex:hover {
+  transform: scale(1.02);
+}
+
+.complex:hover .complex__image {
+  filter: grayscale(0);
 }
 
 .complex__image img {
@@ -232,4 +227,73 @@
   font-size: calc(14px + 0.3vw);
   font-weight: 500;
   color: var(--third-color);
+}
+
+.banner {
+  z-index: 1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40vh;
+  background-image: url('images/main.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.banner__title {
+  font-size: calc(40px + 3vw);
+  font-weight: 700;
+  text-align: center;
+  color: var(--second-color);
+  text-shadow: 0 0 40px var(--main-color);
+}
+
+.banner__desc {
+  font-size: calc(20px + 0.6vw);
+  font-weight: 500;
+  text-align: center;
+  color: var(--second-color);
+  text-shadow: 0 0 40px var(--main-color);
+}
+
+.apartments {
+  padding: calc(10px + 2vw);
+  width: 100vw;
+  background-image: url(images/gray-background.jpg);
+}
+
+.apartments__inner {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+}
+
+.apartment {
+  width: fit-content;
+  display: flex;
+  flex-flow: row;
+  color: var(--second-color);
+}
+
+.apartment__image {
+  width: calc(200px + 15vw);
+  height: calc(200px + 15vw);
+  overflow: hidden;
+}
+
+.apartment__image img {
+  width: 100%;
+  height: auto;
+}
+
+.apartment:hover {
+  transform: scale(1.02);
+}
+
+.apartment__info {
+  display: flex;
+  flex-flow: column;
 }

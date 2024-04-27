@@ -20,7 +20,15 @@ public class ApartmentService {
 
     private final ApartmentRepository apartmentRepository;
 
-    public List<Apartment> findAll(boolean sortedByArea, String title) {
+    public List<Apartment> findAll(boolean sortedByBuilding) {
+        if (sortedByBuilding) {
+            return apartmentRepository.findAll(Sort.by("building"));
+        }
+        else {
+            return apartmentRepository.findAll(Sort.unsorted());
+        }
+    }
+    public List<Apartment> findAllByTitle(boolean sortedByArea, String title) {
         if (sortedByArea) {
             return apartmentRepository.findApartmentsByBuildingTitle(Sort.by("area"), title);
         }

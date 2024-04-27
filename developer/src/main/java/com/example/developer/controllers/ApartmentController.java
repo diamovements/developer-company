@@ -20,7 +20,12 @@ public class ApartmentController {
 
     @GetMapping("{title}/apartments")
     public List<Apartment> getAllByTitle(@PathVariable("title") String title) {
-        return apartmentService.findAll(true, title);
+        return apartmentService.findAllByTitle(true, title);
+    }
+
+    @GetMapping("apartments")
+    public List<Apartment> getAll() {
+        return apartmentService.findAll(true);
     }
 
 //    @PostMapping("/{title}/apartments/floor")
