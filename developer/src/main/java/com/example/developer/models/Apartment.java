@@ -45,6 +45,9 @@ public class Apartment {
     @Column(name = "rooms")
     private int rooms;
 
+    @Column(name = "image")
+    private String image;
+
     @ManyToOne
     @JoinColumn(name = "building_id")
     @JsonIgnore
