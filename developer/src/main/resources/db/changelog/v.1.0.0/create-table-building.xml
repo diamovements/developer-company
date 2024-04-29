@@ -41,10 +41,7 @@
             <column name="rooms" type="int">
                 <constraints nullable="false"/>
             </column>
-<<<<<<< HEAD
-=======
             <column name="image" type="varchar(255)"/>
->>>>>>> dc58089c5f4deefdfea4706a8b966a49ba7a7de7
             <column name="building_id" type="int">
                 <constraints nullable="false"/>
             </column>
@@ -59,9 +56,4 @@
                                  referencedTableName="buildings"
                                  onDelete="CASCADE"/>
     </changeSet>
-
-<<<<<<< HEAD
 </databaseChangeLog>
-=======
-</databaseChangeLog>
->>>>>>> dc58089c5f4deefdfea4706a8b966a49ba7a7de7
