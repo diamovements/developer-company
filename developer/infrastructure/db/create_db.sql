@@ -1,1 +1,1 @@
-create database devdb;
+create database developer;
