@@ -56,5 +56,4 @@
                                  referencedTableName="buildings"
                                  onDelete="CASCADE"/>
     </changeSet>
-
 </databaseChangeLog>

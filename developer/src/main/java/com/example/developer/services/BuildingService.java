@@ -57,4 +57,7 @@ public class BuildingService {
             throw new Exception("Нет жилого комплекса с таким названием");
         }
     }
+    public void save(Building building) {
+        buildingRepository.save(building);
+    }
 }

@@ -4,6 +4,7 @@ import com.example.developer.models.Apartment;
 import com.example.developer.models.Building;
 import com.example.developer.models.DistanceRange;
 import com.example.developer.services.BuildingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

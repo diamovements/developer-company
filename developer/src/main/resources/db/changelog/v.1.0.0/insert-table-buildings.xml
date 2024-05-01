@@ -5,6 +5,7 @@
     <changeSet id="insert-building-data" author="s.m">
         <sql>
             INSERT INTO buildings (building_id, location, image, title, distance) VALUES
+
                                                                                       (1, 'м. Терехово', 'images/buildings/samolyot.jpg', 'Самолет', 10),
                                                                                       (2, 'м. Раменки', 'images/buildings/kutuzov.jpg', 'Кутузов', 20),
                                                                                       (3, 'м. Белорусская', 'images/buildings/cameo.jpg', 'Cameo Villas', 15),
