@@ -20,7 +20,15 @@ public class ApartmentService {
 
     private final ApartmentRepository apartmentRepository;
 
-    public List<Apartment> findAll(boolean sortedByArea, String title) {
+    public List<Apartment> findAll(boolean sortedByArea) {
+        if (sortedByArea) {
+            return apartmentRepository.findAll(Sort.by("area"));
+        }
+        else {
+            return apartmentRepository.findAll(Sort.unsorted());
+        }
+    }
+    public List<Apartment> findAllByTitle(boolean sortedByArea, String title) {
         if (sortedByArea) {
             return apartmentRepository.findApartmentsByBuildingTitle(Sort.by("area"), title);
         }
@@ -52,10 +60,8 @@ public class ApartmentService {
             return apartmentRepository.findApartmentsByFloorBetween(min, max, Sort.unsorted(), title);
         }
     }
-    public List<Apartment> findAllApartments(boolean sorted) {
-        return apartmentRepository.findAll(Sort.by("area"));
-    }
-    public List<Apartment> findByFilter(ApartmentFilter apartmentFilter, String title) {
+
+    public List<Apartment> findByFilter(ApartmentFilter apartmentFilter) {
         Specification<Apartment> spec = Specification.where(null);
         if (apartmentFilter.getMinFloor() != null && apartmentFilter.getMaxFloor() != null) {
             spec = spec.and((root, query, cb) ->

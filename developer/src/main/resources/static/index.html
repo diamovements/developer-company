@@ -7,19 +7,17 @@
   <link rel="icon" type="image/png" href="images/icon.png">
   <link rel="stylesheet" href="global.css">
   <link rel="stylesheet" href="main.css">
+  <script src="apartment_card.js" defer></script>
   <script src="main.js" defer></script>
+  <script src="apartments_filter.js" defer></script>
+  <script src="menu.js" defer></script>
+  <script src="form.js" defer></script>
   <script src="https://kit.fontawesome.com/be9639af8e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    
-    <!-- <script>
-      const iconLink = document.getElementById('icon');
-      iconLink.addEventListener('click', function() {
-        window.location.href = '/login';
-      });
-    </script> -->
+
     <nav class="menu">
-      <button class="menu__button button_menu">
+      <button class="menu__button button_menu " id="menuButton">
         МЕНЮ
         <div class="button_menu__close"></div>
       </button>
@@ -28,16 +26,41 @@
           <a class="menu__href" href="#complexes">Жилые комплексы</a>
         </li>
         <li>
-          <a class="menu__href" href="">Планировки</a>
+          <a class="menu__href" href="#apartments">Планировки</a>
         </li>
         <li>
-          <a class="menu__href" href="">Отделки</a>
+          <a class="menu__href" href="" id="openFormButton">Оставить заявку</a>
         </li>
         <li>
           <a id="icon" class="menu__href" href="/register"><i class="fa-regular fa-user"></i></a>
         </li>
       </ul>
     </nav>
+
+    <div class="popup popup_contact">
+      <form id="contactForm">
+        <h1>СВЯЖИТЕСЬ С НАМИ</h1>
+        <label for="firstName">Имя:</label>
+        <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+
+        <label for="title">Выбранный ЖК:</label>
+        <select id="title" name="title" required>
+            <option value="ЖК1">ЖК1</option>
+            <option value="ЖК2">ЖК2</option>
+            <option value="ЖК3">ЖК3</option>
+        </select>
+
+
+        <button type="submit" class="button_form" id="sendContactForm">Отправить</button>
+        <button type="button" class="button_form" id="closeContactForm">Закрыть</button>
+      </form>
+    </div>
   
 
   <main>
@@ -60,22 +83,24 @@
       </div>
     </header>
 
-    <div class="company-info">
+    <div class="company-info" id="company-info">
       <img src="images/company-info.jpg" alt="Один из домов в ЖК" class="company-info__image">
 
       <div class="company-info__description">
         <p>
-        Откройте дверь в мир комфорта и современности с MOSCOW BUILD!
+        Откройте дверь в мир комфорта и современности с <span class="accent">MOSCOW BUILD</span>!
         Наши жилые комплексы в пределах МКАД - это не просто дома, а истинные оазисы современного комфорта и эстетики. 
         Откройте для себя уникальные пространства, где каждая линия, каждая отделка отражает внимание к деталям и стремление к идеалу. 
         </p>
 
+        <div class="line"></div>
+
         <div class="company-info__features">
-          <p class="feature"><span class="feature_bold">От 300 т.р.</span>
+          <p class="feature"><span class="feature_bold accent">От 300 т.р.</span>
             за квадратный метр</p>
-          <p class="feature"><span class="feature_bold">Более 30-ти</span>
+          <p class="feature"><span class="feature_bold accent">Более 30-ти</span>
             вариантов планировок</p>
-          <p class="feature"><span class="feature_bold">от 22 кв.м.</span>
+          <p class="feature"><span class="feature_bold accent">от 22 кв.м.</span>
             площадь квартир</p>
         </div>
 
@@ -85,42 +110,105 @@
     <div class="apartment-complex" id="complexes">
       <h1 class="apartment-complex__title">НАШИ ЖИЛЫЕ КОМПЛЕКСЫ</h1>
       <div class="complexes">
-        <div class="complex">
-          <span class="complex__name">ЖК КУТОЗОВСКИЙ</span>
-          <span class="complex__metro">5 минут до м. Белорусская</span>
-          <div class="complex__image">
-              <img src="images/kutuzov.jpg"/>
-          </div>
-        </div>
-        <div class="complex">
-          <span class="complex__name">ЖК КУТОЗОВСКИЙ</span>
-          <span class="complex__metro">5 минут до м. Белорусская</span>
-          <div class="complex__image">
-              <img src="images/samolyot.jpeg"/>
-          </div>
-        </div>
-        <div class="complex">
-          <span class="complex__name">ЖК КУТОЗОВСКИЙ</span>
-          <span class="complex__metro">5 минут до м. Белорусская</span>
-          <div class="complex__image">
-              <img src="images/city.jpg"/>
-          </div>
-        </div>
-        <div class="complex">
-          <span class="complex__name">ЖК КУТОЗОВСКИЙ</span>
-          <span class="complex__metro">5 минут до м. Белорусская</span>
-          <div class="complex__image">
-              <img src="images/kutuzov.jpg"/>
-          </div>
-        </div>
       </div>
     </div>
 
-    <div class="header">
-      <span class="header__title">MOSCOW BUILD</span>
-      <span class="header__desc">Современные жилые комплексы в пределах МКАД</span>
-      
+    <div class="banner">
+      <span class="banner__title">MOSCOW BUILD</span>
+      <span class="banner__desc">Современные жилые комплексы в пределах МКАД</span>
+    </div>
+
+    <div class="filters">
+      <span class="filters__title">ФИЛЬТРЫ<button class="button_close_filters" id="closeFiltersButton" type="button">➡</button></span>
+      <div class="filters__buttons">
+        <button type="button" class="filter__button active" id="button_param">По параметрам</button>
+        <button type="button" class="filter__button inactive" id="button_building">По ЖК</button>
+      </div>
+
+      <div class="filters__forms">
+        <form class="param_filters"> 
+          <div class="filter">
+            <span class="filter__name">ЭТАЖ:</span>
+            <label for="minFloor">от</label>
+            <input type="number" id="minFloor" name="minFloor" required>
+            <label for="maxFloor">до</label>
+            <input type="number" id="maxFloor" name="maxFloor" required>
+          </div>
+          <div class="filter">
+            <span class="filter__name">ПЛОЩАДЬ:</span>
+            <label for="minArea">от</label>
+            <input type="number" id="minArea" name="minArea" required>
+            <label for="maxArea">до</label>
+            <input type="number" id="maxArea" name="maxArea" required>
+          </div>
+          <div class="filter">
+            <span class="filter__name">ЦЕНА:</span>
+            <label for="minPrice">от</label>
+            <input type="number" id="minPrice" name="minPrice" required>
+            <label for="maxPrice">до</label>
+            <input type="number" id="maxPrice" name="maxPrice" required>
+          </div>
+          <div class="filter">
+            <span class="filter__name">КОМНАТЫ:</span>
+            <label for="minRooms">от</label>
+            <input type="number" id="minRooms" name="minRooms" required>
+            <label for="maxRooms">до</label>
+            <input type="number" id="maxRooms" name="maxRooms" required>
+          </div>
+          <button class="filter__button" id="setParamFiltersButton" type="submit">ПРИМЕНИТЬ</button>
+        </form>
+  
+        <form class="building_filters">
+          <button class="filter__button" id="setBuildingFiltersButton" type="submit">ПРИМЕНИТЬ</button>
+        </form>
+      </div>
+     
+      <button class="filter__button" id="resetFiltersButton" type="button">СБРОСИТЬ</button>
+    </div>
+
+    <div class="apartments" id="apartments">
+      <h1 class="apartments__title">ВЫБЕРИТЕ СВОЮ КВАРТИРУ</h1>
+      <button class="button_show_filters" id="showFiltersButton" type="button">ФИЛЬТРЫ</button>
+      <div class="apartments__inner">
+      </div>
+      <div class="gradient"></div>
+      <button class="button_show" type="button" id="showApartmentsButton">ПОКАЗАТЬ ВСЕ</button>
+    </div>
+
+    <div class="popup popup_card">
+      <div class="apartmentCard">
+        <div class="apartmentCard__image">
+            <img src="images/apartments/ap1_1.jpg"/>
+        </div>
+        <div class="apartmentCard__info">
+            <span class="apartmentCard__complex"><b></b></span>
+            <span class="apartmentCard__rooms">Комнаты: <b></b></span>
+            <span class="apartmentCard__area">Плошадь: <b></b></span>
+            <span class="apartmentCard__floor">Этаж: <b></b></span>
+            <span class="apartmentCard__price"></span>
+            <button type="button" class="apartmentCard__button" id="openFormFromCardButton">Отправить заявку</button>
+            <button type="button" class="apartmentCard__button" id="closeCardButton">Закрыть</button>
+        </div>
+      </div>
     </div>
   </main>
+
+  <footer class="footer">
+    <div class="footer__logo">
+      <img src="images/icon.png" alt="Moscow Build">
+    </div>
+    <div class="footer__links">
+      <a href="#company-info">О нас</a>
+      <a href="#complexes">Проекты</a>
+      <a href="#apartments">Квартиры</a>
+    </div>
+    <div class="footer__social">
+      <a href="mailto:info@moscowbuild.com">info@moscowbuild.com</a>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+  
 </body>
 </html>

@@ -22,11 +22,12 @@ public class ApartmentController {
 
     @GetMapping("{title}/apartments")
     public List<Apartment> getAllByTitle(@PathVariable("title") String title) {
-        return apartmentService.findAll(true, title);
+        return apartmentService.findAllByTitle(true, title);
     }
-    @GetMapping("/all-apartments")
+
+    @GetMapping("apartments")
     public List<ApartmentDTO> getAll() {
-        List<Apartment> list = apartmentService.findAllApartments(true);
+        List<Apartment> list = apartmentService.findAll(true);
         List<ApartmentDTO> dtoList = new ArrayList<>();
         for (Apartment ap : list) {
             ApartmentDTO dto = new ApartmentDTO();
@@ -43,29 +44,9 @@ public class ApartmentController {
         return dtoList;
     }
 
-//    @PostMapping("/{title}/apartments/floor")
-//    public List<Apartment> getByFloor(@PathVariable("title") String title, @RequestBody DistanceRange distanceRange) {
-//        int min = distanceRange.getMin();
-//        int max = distanceRange.getMax();
-//        return apartmentService.findBetweenFloor(min, max, true, title);
-//    }
-//
-//    @PostMapping("/{title}/apartments/area")
-//    public List<Apartment> getByArea(@PathVariable("title") String title, @RequestBody DistanceRange distanceRange) {
-//        float min = distanceRange.getMin();
-//        float max = distanceRange.getMax();
-//        return apartmentService.findBetweenArea(min, max, true, title);
-//    }
-//
-//    @PostMapping("/{title}/apartments/price")
-//    public List<Apartment> getByPrice(@PathVariable("title") String title, @RequestBody DistanceRange distanceRange) {
-//        float min = distanceRange.getMin();
-//        float max = distanceRange.getMax();
-//        return apartmentService.findByPrice(min, max, true, title);
-//    }
-    @PostMapping("/{title}/apartments/filter")
-    public List<ApartmentDTO> filtered(@PathVariable("title") String title, @RequestBody ApartmentFilter filter) {
-        List<Apartment> list = apartmentService.findByFilter(filter, title);
+    @PostMapping("apartments/filter")
+    public List<ApartmentDTO> filtered(@RequestBody ApartmentFilter filter) {
+        List<Apartment> list = apartmentService.findByFilter(filter);
         List<ApartmentDTO> dtoList = new ArrayList<>();
         for (Apartment ap : list) {
             ApartmentDTO dto = new ApartmentDTO();

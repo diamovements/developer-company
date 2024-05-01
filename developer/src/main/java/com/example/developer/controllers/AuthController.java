@@ -46,10 +46,10 @@ public class AuthController {
             return "register";
         }
         clientService.saveClient(clientDTO);
-        return "redirect:/index.html#complexes";
+        return "redirect:/index.html";
     }
     @GetMapping("/index")
     public String index() {
-        return "redirect:/index.html#apartments";
+        return "redirect:/index.html";
     }
 }
