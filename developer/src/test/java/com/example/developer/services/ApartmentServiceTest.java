@@ -21,17 +21,12 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ApartmentServiceTest {
-
     @Mock
     private ApartmentRepository apartmentRepository;
-
     @InjectMocks
     private ApartmentService apartmentService;
-
     @Mock
     private Building building;
-
-
     @Test
     void findAll() {
         Apartment ap1 = new Apartment();
@@ -50,7 +45,6 @@ class ApartmentServiceTest {
 
         assertEquals(list, got);
     }
-
     @Test
     void findAllByTitle() {
         Apartment ap1 = new Apartment();

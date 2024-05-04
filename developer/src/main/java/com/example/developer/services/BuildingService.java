@@ -16,15 +16,11 @@ import java.util.List;
 
 @Service
 public class BuildingService {
-
-
     @Autowired
     public BuildingService(BuildingRepository buildingRepository) {
         this.buildingRepository = buildingRepository;
     }
-
     private final BuildingRepository buildingRepository;
-
     @SneakyThrows
     @Transactional
     public List<Building> findAll(boolean sortedByTitle) {
