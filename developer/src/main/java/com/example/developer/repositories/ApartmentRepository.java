@@ -15,4 +15,5 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Integer> {
     List<Apartment> findApartmentByAreaBetween(float min, float max, Sort area, String title);
     List<Apartment> findApartmentsByBuildingTitle(Sort area, String title);
     List<Apartment> findAll(Specification<Apartment> spec);
+    Apartment findApartmentByImage(String img);
 }

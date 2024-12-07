@@ -130,14 +130,14 @@ function createApartments(apartments) {
     } else {
         for (const apartment of apartments) {
             apartmentsHTML += `
-            <div class="apartment">
+            <div class="apartment" data-id="${apartment.apartment_id}">
                 <div class="apartment__image">
                     <img src="${apartment.image}"/>
                 </div>
                 <div class="apartment__info">
                     <span class="apartment__complex"><b>${apartment.title}</b></span>
                     <span class="apartment__rooms">Комнаты: <b>${apartment.rooms}</b></span>
-                    <span class="apartment__area">Плошадь: <b>${apartment.area} м<sup>2</sup></b></span>
+                    <span class="apartment__area">Площадь: <b>${apartment.area} м<sup>2</sup></b></span>
                     <span class="apartment__floor">Этаж: <b>${apartment.floor}</b></span>
                     <span class="apartment__price">${apartment.price} ₽</span>
                 </div>
@@ -145,6 +145,6 @@ function createApartments(apartments) {
             `;
         }
     }
-
     apartmentsContainer.innerHTML = apartmentsHTML;
 }
+

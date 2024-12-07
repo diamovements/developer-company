@@ -1,37 +1,29 @@
 package com.example.developer.services;
 
 import com.example.developer.dto.ClientDTO;
+import com.example.developer.models.Apartment;
 import com.example.developer.models.Client;
 import com.example.developer.models.Role;
+import com.example.developer.repositories.ApartmentRepository;
 import com.example.developer.repositories.ClientRepository;
 import com.example.developer.repositories.RoleRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ClientService {
     private final ClientRepository clientRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder pe;
 
-    @Autowired
-    public ClientService(ClientRepository clientRepository, RoleRepository roleRepository, PasswordEncoder pe) {
-        this.clientRepository = clientRepository;
-        this.roleRepository = roleRepository;
-        this.pe = pe;
-    }
 
     private Role createRole() {
         Role role = new Role();
@@ -49,10 +41,6 @@ public class ClientService {
     }
     public Client findByEmail(String email) {
         return clientRepository.findClientByEmail(email);
-    }
-    public List<ClientDTO> findAll() {
-        List<Client> list = clientRepository.findAll();
-        return list.stream().map(this::mapToDTO).collect(Collectors.toList());
     }
     public void saveClient(ClientDTO clientDTO) {
         Client client = new Client();

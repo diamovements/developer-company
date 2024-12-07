@@ -1,0 +1,70 @@
+body {
+    background-color: var(--fourth-color);
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    color: var(--third-color);
+    padding: 10px 0;
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.greeting {
+    margin-bottom: 35px;
+    font-size: 25px;
+}
+
+.apartment {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.container .fav {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+}
+
+.apartment img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.apartment-info {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.apartment-info p {
+    margin: 5px 0;
+}

@@ -4,25 +4,18 @@ import com.example.developer.dto.ClientDTO;
 import com.example.developer.models.Client;
 import com.example.developer.services.ClientService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class AuthController {
     private final ClientService clientService;
-
-    @Autowired
-    public AuthController(ClientService clientService) {
-        this.clientService = clientService;
-    }
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -52,4 +45,9 @@ public class AuthController {
     public String index() {
         return "redirect:/index.html";
     }
+    @GetMapping("/account")
+    public String getAcc() {
+        return "redirect:/account.html";
+    }
+
 }

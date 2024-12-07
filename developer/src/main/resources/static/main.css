@@ -539,6 +539,25 @@
   justify-content: space-around;
   color: var(--third-color);
   font-size: calc(14px + 0.2vw);
+  gap: 10px
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.favorite i {
+  font-size: 1em;
+  color: crimson;
+}
+
+.favorite p {
+  margin: 0;
+  font-family: 'Montserrat', serif;
+  font-size: calc(14px + 0.2vw);
+  color: var(--third-color);
 }
 
 .apartmentCard__image {
@@ -552,6 +571,11 @@
   height: calc(200px + 20vw);
   min-width: 100%;
   min-height: 100%;
+}
+
+.apartmentCard__image i {
+  color: crimson;
+  font-size: 15px;
 }
 
 .apartmentCard__button {

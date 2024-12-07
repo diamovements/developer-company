@@ -6,6 +6,7 @@ import com.example.developer.repositories.BuildingRepository;
 import com.example.developer.repositories.ClientRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -15,13 +16,11 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BuildingService {
-    @Autowired
-    public BuildingService(BuildingRepository buildingRepository) {
-        this.buildingRepository = buildingRepository;
-    }
-    private final BuildingRepository buildingRepository;
-    @SneakyThrows
+
+   private final BuildingRepository buildingRepository;
+
     @Transactional
     public List<Building> findAll(boolean sortedByTitle) {
         if (sortedByTitle) {
@@ -46,14 +45,10 @@ public class BuildingService {
     public List<Apartment> getApartmentsByBuildingTitle(String title) throws Exception {
         Building building = buildingRepository.findBuildingByTitle(title);
         if (building != null) {
-//            return building.getApartments();
             return null;
         }
         else {
             throw new Exception("Нет жилого комплекса с таким названием");
         }
-    }
-    public void save(Building building) {
-        buildingRepository.save(building);
     }
 }

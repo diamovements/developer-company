@@ -1,4 +1,4 @@
-package com.example.developer.models;
+package com.example.developer.dto;
 
 import lombok.Getter;
 import lombok.Setter;

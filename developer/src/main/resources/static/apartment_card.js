@@ -4,7 +4,6 @@ function setApartmentCard() {
 
   apartments.forEach(apartment => {
       apartment.addEventListener('click', function() {
-          // Получаем данные из элемента .apartment
           let apartmentImage = apartment.querySelector('.apartment__image img').src;
           let apartmentTitle = apartment.querySelector('.apartment__complex').innerText;
           let apartmentRooms = apartment.querySelector('.apartment__rooms b').innerText;
@@ -12,7 +11,6 @@ function setApartmentCard() {
           let apartmentFloor = apartment.querySelector('.apartment__floor b').innerText;
           let apartmentPrice = apartment.querySelector('.apartment__price').innerText;
 
-          // Устанавливаем данные в элемент .popup_card
           let apartmentCardImage = apartmentCard.querySelector('.apartmentCard__image img');
           apartmentCardImage.src = apartmentImage;
           let apartmentCardComplex = apartmentCard.querySelector('.apartmentCard__complex');

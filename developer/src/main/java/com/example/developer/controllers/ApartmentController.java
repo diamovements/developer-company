@@ -2,23 +2,18 @@ package com.example.developer.controllers;
 
 import com.example.developer.dto.ApartmentDTO;
 import com.example.developer.models.Apartment;
-import com.example.developer.models.ApartmentFilter;
+import com.example.developer.dto.ApartmentFilter;
 import com.example.developer.services.ApartmentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class ApartmentController {
     private ApartmentService apartmentService;
-
-
-    @Autowired
-    public ApartmentController(ApartmentService apartmentService) {
-        this.apartmentService = apartmentService;
-    }
 
     @GetMapping("{title}/apartments")
     public List<Apartment> getAllByTitle(@PathVariable("title") String title) {

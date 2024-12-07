@@ -1,4 +1,4 @@
-package com.example.developer.dto;
+package com.example.developer.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "apartment_request")
-public class ApartmentRequestDTO {
+public class ApartmentRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

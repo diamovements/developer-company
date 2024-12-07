@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="account.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js" defer></script>
+    <script src="menu.js" defer></script>
+</head>
+<body>
+    <nav class="menu">
+        <button class="menu__button button_menu " id="menuButton">
+            МЕНЮ
+            <div class="button_menu__close"></div>
+        </button>
+        <ul class="menu__list">
+            <li>
+                <a class="menu__href" href="#complexes">Жилые комплексы</a>
+            </li>
+            <li>
+                <a class="menu__href" href="#apartments">Планировки</a>
+            </li>
+            <li>
+                <a class="menu__href" href="" id="openFormButton">Оставить заявку</a>
+            </li>
+            <li>
+                <a class="menu__href" href="/account" id="account">Личный кабинет</a>
+            </li>
+            <li>
+                <a id="icon" class="menu__href" href="/register"><i class="fa-regular fa-user"></i></a>
+            </li>
+        </ul>
+    </nav>
+<h1>Личный кабинет</h1>
+<div class="container">
+    <div class="greeting">
+        <h2>Добрый день, <span id="name"></span></span>!</h2>
+        <script>
+            async function fetchClientData() {
+                try {
+                    const response = await fetch('/getperson');
+                    if (!response.ok) {
+                        throw new Error('Ошибка при получении данных о клиенте');
+                    }
+                    const data = await response.json();
+                    document.getElementById('name').textContent = data.name;
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                }
+            }
+            fetchClientData();
+        </script>
+    </div>
+    <div class="fav">
+        <h3>Избранное</h3>
+        <ul id="apartmentsList"></ul>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("/account")
+            .then(response => response.json())
+            .then(user => {
+                document.getElementById("name").textContent = user.name;
+                const apartmentsList = document.getElementById("favs");
+                user.favoriteApartments.forEach(apartment => {
+                    const li = document.createElement("li");
+                    li.className = "apartment";
+                    li.innerHTML = `
+                            <div>
+                                <img src="${apartment.image}" alt="Упс, пропала картинка">
+                            </div>
+                            <div class="apartment-info">
+                                <p><strong>Этаж:</strong> ${apartment.floor}</p>
+                                <p><strong>Площадь:</strong> ${apartment.area} м²</p>
+                                <p><strong>Цена:</strong> $${apartment.price}</p>
+                                <p><strong>Номер:</strong> ${apartment.number}</p>
+                                <p><strong>Комнаты:</strong> ${apartment.rooms}</p>
+                            </div>
+                        `;
+                    apartmentsList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    });
+</script>
+</body>
+</html>

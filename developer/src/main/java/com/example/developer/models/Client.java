@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "clients")
@@ -44,5 +46,21 @@ public class Client {
                     "person_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "client_favorite_apartments",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "apartment_id")
+    )
+    private Set<Apartment> favoriteApartments = new HashSet<>();
+
+    public void addFavorite(Apartment apartment) {
+        this.favoriteApartments.add(apartment);
+    }
+
+    public void removeFavorite(Apartment apartment) {
+        this.favoriteApartments.remove(apartment);
+    }
 
 }

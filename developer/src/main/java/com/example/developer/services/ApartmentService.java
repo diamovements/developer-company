@@ -1,8 +1,9 @@
 package com.example.developer.services;
 
 import com.example.developer.models.Apartment;
-import com.example.developer.models.ApartmentFilter;
+import com.example.developer.dto.ApartmentFilter;
 import com.example.developer.repositories.ApartmentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -11,12 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ApartmentService {
-
-    @Autowired
-    public ApartmentService(ApartmentRepository apartmentRepository) {
-        this.apartmentRepository = apartmentRepository;
-    }
 
     private final ApartmentRepository apartmentRepository;
 
@@ -34,30 +31,6 @@ public class ApartmentService {
         }
         else {
             return apartmentRepository.findApartmentsByBuildingTitle(Sort.unsorted(), title);
-        }
-    }
-    public List<Apartment> findByPrice(float min, float max, boolean sortedByPrice, String title) {
-        if (sortedByPrice) {
-            return apartmentRepository.findApartmentsByPriceBetween(min, max, Sort.by("price"), title);
-        }
-        else {
-            return apartmentRepository.findApartmentsByPriceBetween(min, max, Sort.unsorted(), title);
-        }
-    }
-    public List<Apartment> findBetweenArea(float min, float max, boolean sortedByArea, String title) {
-        if (sortedByArea) {
-            return apartmentRepository.findApartmentByAreaBetween(min, max, Sort.by("area"), title);
-        }
-        else {
-            return apartmentRepository.findApartmentByAreaBetween(min, max, Sort.unsorted(), title);
-        }
-    }
-    public List<Apartment> findBetweenFloor(int min, int max, boolean sortedByFloor, String title) {
-        if (sortedByFloor) {
-            return apartmentRepository.findApartmentsByFloorBetween(min, max, Sort.by("floor"), title);
-        }
-        else {
-            return apartmentRepository.findApartmentsByFloorBetween(min, max, Sort.unsorted(), title);
         }
     }
 

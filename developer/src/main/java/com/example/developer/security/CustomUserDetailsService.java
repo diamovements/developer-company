@@ -3,6 +3,7 @@ package com.example.developer.security;
 import com.example.developer.models.Client;
 import com.example.developer.models.Role;
 import com.example.developer.repositories.ClientRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,13 +18,9 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final ClientRepository clientRepository;
-
-    @Autowired
-    public CustomUserDetailsService(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -39,6 +36,5 @@ public class CustomUserDetailsService implements UserDetailsService {
     public Collection<? extends GrantedAuthority> mapRole(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
-
     }
 }
