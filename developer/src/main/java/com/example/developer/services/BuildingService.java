@@ -21,27 +21,33 @@ public class BuildingService {
 
    private final BuildingRepository buildingRepository;
 
-    @Transactional
+    @Transactional //зачем
     public List<Building> findAll(boolean sortedByTitle) {
         if (sortedByTitle) {
-            return buildingRepository.findAll(Sort.by("title"));
+            return buildingRepository.findAll(Sort.by("title")); //вынести в переменную
         }
         else {
             return buildingRepository.findAll(Sort.unsorted());
         }
     }
 
+    //если не найдено, кинуть исключение надо
     public Building findById(int id) {
         return buildingRepository.findById(id).orElse(null);
     }
 
+
+    //сделать optional
     public List<Building> findByTitleStartsWith(String prefix) {
         return buildingRepository.findByTitleStartsWith(prefix);
     }
 
+    //тоже сделать optional
     public List<Building> findBetweenDistance(int min, int max) {
         return buildingRepository.findBuildingsByDistanceBetween(min, max);
     }
+
+    //во-первых, тут тоже нужен optional, во вторых пользовательское исключение
     public List<Apartment> getApartmentsByBuildingTitle(String title) throws Exception {
         Building building = buildingRepository.findBuildingByTitle(title);
         if (building != null) {

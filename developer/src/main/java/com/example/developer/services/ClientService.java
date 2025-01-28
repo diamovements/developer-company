@@ -25,6 +25,7 @@ public class ClientService {
     private final PasswordEncoder pe;
 
 
+    //вынести роль в перечисление
     private Role createRole() {
         Role role = new Role();
         role.setName("ROLE_ADMIN");
@@ -39,6 +40,8 @@ public class ClientService {
         clientDTO.setLastName(s[1]);
         return clientDTO;
     }
+
+    //сделать optional
     public Client findByEmail(String email) {
         return clientRepository.findClientByEmail(email);
     }
