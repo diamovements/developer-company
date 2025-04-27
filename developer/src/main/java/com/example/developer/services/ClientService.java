@@ -23,15 +23,11 @@ public class ClientService {
     private final ClientRepository clientRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder pe;
-
-
-    //вынести роль в перечисление
     private Role createRole() {
         Role role = new Role();
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }
-
     private ClientDTO mapToDTO(Client client) {
         ClientDTO clientDTO = new ClientDTO();
         String[] s = client.getName().split(" ");
@@ -40,8 +36,6 @@ public class ClientService {
         clientDTO.setLastName(s[1]);
         return clientDTO;
     }
-
-    //сделать optional
     public Client findByEmail(String email) {
         return clientRepository.findClientByEmail(email);
     }

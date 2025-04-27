@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,43 +18,38 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BuildingService {
 
    private final BuildingRepository buildingRepository;
 
-    @Transactional //зачем
+    @Transactional
     public List<Building> findAll(boolean sortedByTitle) {
         if (sortedByTitle) {
-            return buildingRepository.findAll(Sort.by("title")); //вынести в переменную
+            return buildingRepository.findAll(Sort.by("title"));
         }
         else {
             return buildingRepository.findAll(Sort.unsorted());
         }
     }
 
-    //если не найдено, кинуть исключение надо
-    public Building findById(int id) {
-        return buildingRepository.findById(id).orElse(null);
-    }
-
-
-    //сделать optional
     public List<Building> findByTitleStartsWith(String prefix) {
         return buildingRepository.findByTitleStartsWith(prefix);
     }
 
-    //тоже сделать optional
     public List<Building> findBetweenDistance(int min, int max) {
         return buildingRepository.findBuildingsByDistanceBetween(min, max);
     }
 
-    //во-первых, тут тоже нужен optional, во вторых пользовательское исключение
     public List<Apartment> getApartmentsByBuildingTitle(String title) throws Exception {
+        log.info("title: " + title);
         Building building = buildingRepository.findBuildingByTitle(title);
+        log.info("building: " + building);
         if (building != null) {
-            return null;
+            return building.getApartments();
         }
         else {
+            log.info("Building not found");
             throw new Exception("Нет жилого комплекса с таким названием");
         }
     }

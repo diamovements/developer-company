@@ -91,7 +91,7 @@
   flex-flow: row;
   align-items: center;
   gap: calc(20px + 2vw);
-  background-image: url(images/gray-background.jpg);
+  background-image: url(../../public/images/gray-background.jpg);
 }
 
 .company-info__image {
@@ -166,7 +166,7 @@
 .apartment-complex {
   width: 100vw;
   padding: 2vw 0;
-  background-image: url(images/white-background.jpg);
+  background-image: url(../../public/images/white-background.jpg);
 }
 
 .apartment-complex__title {
@@ -234,7 +234,7 @@
   justify-content: center;
   width: 100%;
   height: 40vh;
-  background-image: url('images/main.jpg');
+  background-image: url('../../public/images/main.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -303,6 +303,7 @@
   border-radius: 10px;
 }
 
+
 .filter__button.active {
   flex-grow: 1;
   background-color: var(--fourth-color);
@@ -322,7 +323,7 @@
 }
 
 .building_filters {
-  display: none;
+  display: flex;
   flex-flow: column;
   gap: calc(10px + 1vw);
 }
@@ -366,9 +367,7 @@
   flex-flow: column;
   padding: calc(10px + 1vw);
   width: 100vw;
-  max-height: 100vh;
-  overflow-y: hidden;
-  background-image: url(images/gray-background.jpg);
+  background-image: url(../../public/images/gray-background.jpg);
 }
 
 .no-apartments {
@@ -540,6 +539,10 @@
   color: var(--third-color);
   font-size: calc(14px + 0.2vw);
   gap: 10px
+}
+
+.popup {
+  display: flex;
 }
 
 .favorite {

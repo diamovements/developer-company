@@ -12,15 +12,17 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/apartments")
 public class ApartmentController {
-    private ApartmentService apartmentService;
+    private final ApartmentService apartmentService;
 
     @GetMapping("{title}/apartments")
     public List<Apartment> getAllByTitle(@PathVariable("title") String title) {
         return apartmentService.findAllByTitle(true, title);
     }
 
-    @GetMapping("apartments")
+    @GetMapping()
     public List<ApartmentDTO> getAll() {
         List<Apartment> list = apartmentService.findAll(true);
         List<ApartmentDTO> dtoList = new ArrayList<>();
@@ -39,7 +41,7 @@ public class ApartmentController {
         return dtoList;
     }
 
-    @PostMapping("apartments/filter")
+    @PostMapping("/filter")
     public List<ApartmentDTO> filtered(@RequestBody ApartmentFilter filter) {
         List<Apartment> list = apartmentService.findByFilter(filter);
         List<ApartmentDTO> dtoList = new ArrayList<>();

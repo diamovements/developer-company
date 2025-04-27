@@ -16,7 +16,7 @@ public class EmailService {
     private final JavaMailSender javaMailSender;
 
     @Value("${spring.mail.username}") private String sender;
-    public void sendEmail(String toEmail, String subject, String body, String path) {
+    public void sendEmail(String toEmail, String subject, String body, String path) throws Exception {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -30,7 +30,7 @@ public class EmailService {
             javaMailSender.send(message);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception("Error while sending email", e);
         }
     }
 }
