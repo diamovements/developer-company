@@ -15,7 +15,7 @@ const ContactForm = ({ onClose }) => {
     useEffect(() => {
         const fetchComplexes = async () => {
             try {
-                const response = await fetch('http://localhost:8080/buildings');
+                const response = await fetch('https://developer-company-7.onrender.com/buildings');
                 const data = await response.json();
 
                 if (Array.isArray(data)) {
@@ -38,7 +38,7 @@ const ContactForm = ({ onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8080/apartment-request', {
+        fetch('https://developer-company-7.onrender.com/apartment-request', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

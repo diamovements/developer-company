@@ -10,7 +10,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -54,6 +56,7 @@ public class AuthController {
                     SecurityContextHolder.getContext());
 
             return ResponseEntity.ok()
+                    .header(HttpHeaders.SET_COOKIE, createSessionCookie(session.getId()).toString())
                     .body(Map.of(
                             "message", "Успешный вход",
                             "redirect", "/account"
@@ -64,6 +67,15 @@ public class AuthController {
         }
     }
 
+    private ResponseCookie createSessionCookie(String sessionId) {
+        return ResponseCookie.from("JSESSIONID", sessionId)
+                .httpOnly(true)
+                .secure(true)
+                .sameSite("None")
+                .path("/")
+                .maxAge(7 * 24 * 60 * 60)
+                .build();
+    }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegistrationRequest request,

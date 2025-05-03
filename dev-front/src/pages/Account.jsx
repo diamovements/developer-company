@@ -5,7 +5,6 @@ import Menu from '../components/Menu/Menu';
 import Footer from '../components/Footer/Footer';
 import '../styles/global.css';
 import '../styles/main.css';
-import '../styles/login.css';
 
 const Account = () => {
     const [userData, setUserData] = useState(null);
@@ -15,7 +14,7 @@ const Account = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await fetch('http://localhost:8080/getperson', {
+            const response = await fetch('https://developer-company-7.onrender.com/getperson', {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
