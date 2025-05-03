@@ -11,7 +11,7 @@ const Account = () => {
     useEffect(() => {
         const fetchClientData = async () => {
             try {
-                const response = await fetch('/getperson');
+                const response = await fetch('https://developer-company-7.onrender.com/getperson');
                 if (!response.ok) {
                     throw new Error('Ошибка при получении данных о клиенте');
                 }

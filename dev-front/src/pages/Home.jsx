@@ -24,7 +24,7 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/apartments");
+                const response = await fetch("https://developer-company-7.onrender.com/apartments");
                 const data = await response.json();
                 console.log("Загруженные квартиры:", data);
 
@@ -35,7 +35,7 @@ const Home = () => {
                     setApartments([]);
                 }
 
-                const complexesResponse = await fetch("http://localhost:8080/buildings");
+                const complexesResponse = await fetch("https://developer-company-7.onrender.com/buildings");
                 const complexesData = await complexesResponse.json();
                 console.log("Загруженные ЖК:", complexesData);
 
@@ -62,9 +62,9 @@ const Home = () => {
 
             if (buildingTitle) {
                 setSelectedBuilding(buildingTitle);
-                response = await fetch(`http://localhost:8080/buildings/${buildingTitle}/apartments`);
+                response = await fetch(`https://developer-company-7.onrender.com/buildings/${buildingTitle}/apartments`);
             } else {
-                response = await fetch("http://localhost:8080/apartments/filter", {
+                response = await fetch("https://developer-company-7.onrender.com/apartments/filter", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(filters),
@@ -97,7 +97,7 @@ const Home = () => {
 
     const handleResetFilters = async () => {
         try {
-            const response = await fetch("http://localhost:8080/apartments");
+            const response = await fetch("https://developer-company-7.onrender.com/apartments");
             const data = await response.json();
 
             if (Array.isArray(data)) {
