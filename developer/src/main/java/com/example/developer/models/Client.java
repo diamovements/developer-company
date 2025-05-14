@@ -1,5 +1,6 @@
 package com.example.developer.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
@@ -53,6 +54,7 @@ public class Client {
             joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "apartment_id")
     )
+    @JsonIgnore
     private Set<Apartment> favoriteApartments = new HashSet<>();
 
     public void addFavorite(Apartment apartment) {

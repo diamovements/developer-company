@@ -1,59 +1,100 @@
-/* login.css */
-
-/* Стили для navbar */
-body {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-}
-.navbar {
-    background-color: darkgrey;
-}
-
-.navbar-brand {
-    color: #fff;
-}
-
-.nav-link {
-    color: #fff;
-}
-
-.nav-link:hover {
-    color: #fff;
-}
-
-/* Стили для формы */
-.container {
-    margin-top: 50px;
-}
-
-.card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.card-header {
-    background-color: #343a40;
-    color: #fff;
-}
-
-.card-body {
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
     padding: 20px;
 }
 
-.form-control {
-    margin-bottom: 10px;
+.auth-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
 }
 
-.btn-primary {
-    background-color: lightgray;
-    border-color: #343a40;
+.auth-logo {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.btn-primary:hover {
-    background-color: darkgrey;
-    border-color: #343a40;
+.auth-logo img {
+    max-width: 200px;
+    height: auto;
 }
 
-.alert {
-    margin-bottom: 10px;
+.auth-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.auth-error {
+    color: #d32f2f;
+    background-color: #fde8e8;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    border-color: #4a76a8;
+    outline: none;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a76a8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-button:hover {
+    background-color: #3a5f8a;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.auth-link {
+    color: #4a76a8;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
 }

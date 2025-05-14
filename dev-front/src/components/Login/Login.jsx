@@ -1,45 +1,65 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/global.css';
 import '../../styles/main.css';
 
 const Login = () => {
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
+        try {
+            const response = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+                credentials: 'include'
+            });
 
-        const result = await response.json();
-        if (response.ok) {
-            localStorage.setItem('token', result.token);
-            window.location.href = '/index.html';
-        } else {
-            alert(result.message || 'Ошибка при входе');
+            if (response.ok) {
+                navigate('/account');
+            } else {
+                const data = await response.json();
+                setError(data.message || 'Ошибка входа');
+            }
+        } catch (err) {
+            setError('Ошибка соединения с сервером');
         }
     };
 
     return (
-        <div className="container">
-            <h2>Login</h2>
-            <form id="loginForm" onSubmit={handleSubmit}>
-                <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} required />
-                <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-                <button type="submit">Login</button>
+        <div className="login-form">
+            <h2>Вход в личный кабинет</h2>
+            {error && <div className="error-message">{error}</div>}
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Пароль:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit" className="submit-button">Войти</button>
             </form>
+            <p>Еще нет аккаунта? <Link to="/register">Зарегистрироваться</Link></p>
         </div>
     );
 };

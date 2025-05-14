@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/global.css';
 import '../../styles/main.css';
 import ContactForm from '../ContactForm/ContactForm';
@@ -36,10 +37,10 @@ const Menu = () => {
                     <a className="menu__href" href="#" onClick={openForm}>Оставить заявку</a>
                 </li>
                 <li>
-                    <a className="menu__href" href="/account" id="account">Личный кабинет</a>
+                    <Link className="menu__href" to="/account">Личный кабинет</Link>
                 </li>
                 <li>
-                    <a id="icon" className="menu__href" href="/register"><i className="fa-regular fa-user"></i></a>
+                    <Link className="menu__href" to="/login">Войти</Link>
                 </li>
             </ul>
 
