@@ -1,13 +1,19 @@
 ### Веб-сайт на тему "Компания-застройщик"
+
+Проект задеплоен с помощью **Render**, фронтенд можно посмотреть по ссылке: **https://developer-company-4.onrender.com/**
+
+Для корректного отображения бэкенда необходимо сначала загрузить страницу с ним по ссылке: **https://developer-company-7.onrender.com/**
+
 #### Использованные технологии:
 - Spring REST, Security, Boot
-- CSS, HTML, JS
+- React
 - Javadoc
 - Docker
 - Maven
 - PostgreSQL
 - Tomcat server
 - Liquibase
+- Render для деплоя
 
 ### Демонстрация работы приложения
 
@@ -30,8 +36,8 @@
 ![image](https://github.com/user-attachments/assets/6e3ab369-1534-4ddf-bd90-d3a7c78ab5b5)
 
 
-### Инструкция по запуску приложения
+### Инструкция по локальному запуску приложения
 1. Убедитесь, что на вашем локальном компьютере установлен PostgreSQL, Maven, Docker
-2. Склонируйте репозиторий, перейдите в корневую директорию
+2. Склонируйте репозиторий и переключитесь на ветку main
 3. В командной строке введите docker-compose up --build
-4. Перейдите по адресу localhost:8080/index.html
+4. Перейдите по адресу http://localhost:3000
