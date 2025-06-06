@@ -8,5 +8,4 @@ import lombok.Setter;
 public class DistanceRange {
     private int min;
     private int max;
-
 }
